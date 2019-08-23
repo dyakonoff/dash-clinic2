@@ -1,6 +1,6 @@
 
 buildscript {
-    ext.cubaVersion = '7.0.6'
+    ext.cubaVersion = '7.0.10'
     repositories {
         maven {
             url 'https://dl.bintray.com/cuba-platform/main'
@@ -39,7 +39,7 @@ cuba {
 
 dependencies {
     appComponent("com.haulmont.cuba:cuba-global:$cubaVersion")
-
+    appComponent('com.haulmont.addon.dashboard:dashboard-global:3.0.4')
 }
 
 def hsql = 'org.hsqldb:hsqldb:2.4.1'
@@ -109,13 +109,13 @@ configure(coreModule) {
     }
 
     task startDb(type: CubaHsqlStart) {
-        dbName = 'petclinic'
+        dbName = 'petclinic-livedemo'
     }
 
     task createDb(dependsOn: assembleDbScripts, description: 'Creates local database', type: CubaDbCreation) {
         dbms = 'hsql'
         host = 'localhost'
-        dbName = 'petclinic'
+        dbName = 'petclinic-livedemo'
         dbUser = 'sa'
         dbPassword = ''
     }
@@ -123,7 +123,7 @@ configure(coreModule) {
     task updateDb(dependsOn: assembleDbScripts, description: 'Updates local database', type: CubaDbUpdate) {
         dbms = 'hsql'
         host = 'localhost'
-        dbName = 'petclinic'
+        dbName = 'petclinic-livedemo'
         dbUser = 'sa'
         dbPassword = ''
     }
@@ -174,6 +174,11 @@ configure(webModule) {
     task deploy(dependsOn: [assemble, cleanConf], type: CubaDeployment) {
         appName = "${modulePrefix}"
         appJars(modulePrefix + '-global', modulePrefix + '-web')
+        copy {
+            from "images"
+            into "$cuba.tomcat.dir/webapps/${modulePrefix}/VAADIN/images"
+            include "*.png"
+        }
     }
 
     task buildScssThemes(type: CubaWebScssThemeCreation)

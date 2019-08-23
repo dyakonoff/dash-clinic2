@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<fragment xmlns="http://schemas.haulmont.com/cuba/screen/fragment.xsd"
+          class="com.haulmont.sample.petclinic.web.widgets.PokemonArtWidget">
+    <layout>
+        <image id="pokemonImage" alternateText="Pikachu" height="250px" width="250px" scaleMode="FILL">
+            <relativePath path="VAADIN/images/pikachu_art.png"/>
+        </image>
+    </layout>
+</fragment>

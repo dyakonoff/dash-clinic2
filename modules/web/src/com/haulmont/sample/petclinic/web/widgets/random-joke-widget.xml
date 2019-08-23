@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<fragment xmlns="http://schemas.haulmont.com/cuba/screen/fragment.xsd" class="com.haulmont.sample.petclinic.web.widgets.RandomJokeWidget">
+    <layout>
+        <textArea id="randomJoke"
+                  editable="false"
+                  stylename="borderless"
+                  responsive="true" trim="true"
+                  width="100%" height="100%"
+                  wordWrap="true"/>
+    </layout>
+</fragment>
