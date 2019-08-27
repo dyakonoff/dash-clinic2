@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<fragment xmlns="http://schemas.haulmont.com/cuba/screen/fragment.xsd"
+          class="com.haulmont.sample.petclinic.web.widgets.VisitsCalendarWidget">
+    <data>
+        <collection id="visitsDc" class="com.haulmont.sample.petclinic.entity.visit.Visit"
+                    view="visit-with-pet">
+            <loader id="visitsDl">
+                <query>SELECT v FROM petclinic_Visit v ORDER BY v.visitDate DESC</query>
+            </loader>
+        </collection>
+    </data>
+    <layout expand="vBox">
+        <vbox id="vBox" expand="visitsCalendar">
+            <hbox id="hBox" width="100%" align="MIDDLE_CENTER">
+                <label value="Month" align="MIDDLE_LEFT" height="100%"/>
+                <datePicker id="monthPicker" width="100%" height="100%"
+                            resolution="MONTH"/>
+            </hbox>
+            <calendar id="visitsCalendar"
+                      caption="Visits"
+                      height="100%"
+                      width="100%"
+                      startDate="2019-08-01"
+                      endDate="2019-08-31"/>
+        </vbox>
+    </layout>
+</fragment>
